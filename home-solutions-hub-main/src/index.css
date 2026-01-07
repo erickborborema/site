@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* PH Soluções Residenciais - Design System */
+
+@layer base {
+  :root {
+    /* Dark Theme - Verde e Cinza */
+    --background: 220 15% 12%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 15% 16%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 15% 16%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Primary - Verde */
+    --primary: 142 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Cinza */
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Accent - Verde mais claro */
+    --accent: 142 65% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 220 10% 25%;
+    --muted-foreground: 0 0% 85%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 10% 25%;
+    --input: 220 10% 25%;
+    --ring: 142 70% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --whatsapp: 142 70% 50%;
+    --whatsapp-hover: 142 70% 45%;
+    --text-muted: 0 0% 75%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(142 70% 50%) 0%, hsl(142 65% 45%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(142 70% 50%) 0%, hsl(142 60% 45%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(220 15% 16%) 0%, hsl(220 15% 12%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+    --shadow-whatsapp: 0 4px 14px 0 hsl(142 70% 50% / 0.5);
+
+    /* Sidebar defaults */
+    --sidebar-background: 220 15% 12%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 142 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 10% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 10% 25%;
+    --sidebar-ring: 142 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    color: hsl(var(--foreground));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, sans-serif;
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
+  }
+
+  .section-padding {
+    @apply py-12 sm:py-16 md:py-20 lg:py-24;
+  }
+
+  .card-elevated {
+    @apply bg-card rounded-xl border border-border/50;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-hero);
+  }
+
+  .trust-chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-muted/50 text-muted-foreground border border-border/50;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  .animate-pulse-soft {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulseSoft {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 4px 14px 0 hsl(142 70% 50% / 0.5);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px 0 hsl(142 70% 50% / 0.6);
+    }
+  }
+}

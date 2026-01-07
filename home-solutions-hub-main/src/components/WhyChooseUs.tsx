@@ -35,7 +35,7 @@ export function WhyChooseUs() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="section-padding bg-card border-y border-border/50" ref={ref}>
+    <section className="section-padding bg-card border-y border-border/50" ref={ref} id="diferenciais">
       <div className="section-container">
         {/* Header */}
         <motion.div
@@ -56,7 +56,7 @@ export function WhyChooseUs() {
         </motion.div>
 
         {/* Features Grid */}
-        <div className="flex flex-col gap-4 lg:gap-5 max-w-4xl mx-auto">
+        <div className="flex flex-col gap-4 lg:gap-5 max-w-4xl mx-auto mb-12">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}

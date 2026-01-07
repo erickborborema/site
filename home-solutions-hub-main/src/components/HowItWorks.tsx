@@ -1,6 +1,53 @@
-import { useRef } from "react";
-import { MessageCircle, Camera, FileText, CheckCircle, ChevronDown } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { MessageCircle, Camera, FileText, CheckCircle, ChevronDown, X } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+
+// Função para importar arquivos dinamicamente
+// Busca arquivos que começam com "SaveClip" na pasta src/assets
+const importMediaFiles = () => {
+  const images: string[] = [];
+  let video: string | undefined;
+  
+  // Usar import.meta.glob para encontrar arquivos dinamicamente
+  try {
+    // Buscar todas as imagens que começam com "SaveClip"
+    const imagePattern = import.meta.glob('/src/assets/SaveClip*.{jpg,jpeg,png,JPG,JPEG,PNG}', { 
+      eager: true,
+      import: 'default'
+    });
+    
+    // Buscar vídeo que começa com "SaveClip"
+    const videoPattern = import.meta.glob('/src/assets/SaveClip*.{mp4,mov,webm,MP4,MOV,WEBM}', { 
+      eager: true,
+      import: 'default'
+    });
+    
+    // Adicionar imagens encontradas (ordenar por nome para consistência)
+    const imageEntries = Object.entries(imagePattern)
+      .map(([path, module]: [string, any]) => ({ path, module }))
+      .sort((a, b) => a.path.localeCompare(b.path));
+    
+    imageEntries.forEach(({ module }) => {
+      if (module && typeof module === 'string') {
+        images.push(module);
+      }
+    });
+    
+    // Adicionar vídeo encontrado (pegar o primeiro)
+    const videoEntries = Object.entries(videoPattern);
+    if (videoEntries.length > 0) {
+      const firstVideo = videoEntries[0][1];
+      if (firstVideo && typeof firstVideo === 'string') {
+        video = firstVideo;
+      }
+    }
+  } catch (error) {
+    // Silenciosamente falhar se os arquivos não existirem ainda
+    // Isso permite que o componente funcione mesmo sem os arquivos
+  }
+  
+  return { images, video };
+};
 
 const steps = [
   {
@@ -32,6 +79,10 @@ const steps = [
 export function HowItWorks() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  
+  // Importar arquivos de mídia
+  const mediaFiles = importMediaFiles();
 
   return (
     <section id="como-funciona" className="section-padding" ref={ref}>
@@ -55,7 +106,7 @@ export function HowItWorks() {
         </motion.div>
 
         {/* Steps */}
-        <div className="relative">
+        <div className="relative mb-12">
           {/* Connection Line - Desktop com barra de progresso */}
           <div className="hidden lg:block absolute top-24 left-[12.5%] right-[12.5%] h-1 bg-border/30 rounded-full overflow-hidden">
             <motion.div
@@ -168,6 +219,131 @@ export function HowItWorks() {
             ))}
           </div>
         </div>
+
+        {/* Galeria de Fotos e Vídeo */}
+        {(mediaFiles.images.length > 0 || mediaFiles.video) && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 2 }}
+            className="max-w-6xl mx-auto"
+          >
+            <h3 className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-center mb-8 text-foreground">
+              Veja nosso trabalho
+            </h3>
+            
+            {/* Vídeo */}
+            {mediaFiles.video && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 2.2 }}
+                className="mb-8"
+              >
+                <div className="relative group rounded-2xl overflow-hidden border-2 border-border/50 hover:border-accent/50 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                  <div className="relative aspect-video bg-muted">
+                    <video
+                      src={mediaFiles.video}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Legenda do Vídeo */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent p-4 sm:p-6 pointer-events-none">
+                    <h4 className="font-display font-bold text-white text-lg sm:text-xl mb-1">
+                      Trabalho em Ação
+                    </h4>
+                    <p className="text-white/90 text-sm sm:text-base">
+                      Veja na prática como realizamos nossos serviços com qualidade e agilidade
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Galeria de Fotos */}
+            {mediaFiles.images.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {mediaFiles.images.map((image, index) => {
+                  const captions = [
+                    { title: "Instalação Elétrica", description: "Trabalho profissional com segurança e qualidade" },
+                    { title: "Reparos Residenciais", description: "Soluções rápidas para sua casa" },
+                    { title: "Serviços Especializados", description: "Capricho e atenção aos detalhes" },
+                  ];
+                  const caption = captions[index] || { title: "Nosso Trabalho", description: "Qualidade e compromisso" };
+                  
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.5, delay: 2.4 + index * 0.1 }}
+                      className="group relative overflow-hidden rounded-xl border-2 border-border/50 hover:border-accent/50 transition-all duration-300 cursor-pointer bg-card"
+                      onClick={() => setSelectedImage(image)}
+                    >
+                      <div className="aspect-square bg-muted relative overflow-hidden">
+                        <img
+                          src={image}
+                          alt={caption.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                        {/* Legenda da Foto */}
+                        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 transform translate-y-0 group-hover:translate-y-0 transition-all duration-300">
+                          <h4 className="font-display font-bold text-white text-base sm:text-lg mb-1">
+                            {caption.title}
+                          </h4>
+                          <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
+                            {caption.description}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            )}
+          </motion.div>
+        )}
+
+        {/* Modal de Imagem Ampliada */}
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[200] bg-black/90 flex items-center justify-center p-4"
+              onClick={() => setSelectedImage(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                className="relative max-w-5xl max-h-[90vh] w-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={selectedImage}
+                  alt="Imagem ampliada"
+                  className="w-full h-full object-contain rounded-lg"
+                />
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
+                  aria-label="Fechar"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

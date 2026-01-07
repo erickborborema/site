@@ -1,0 +1,12 @@
+[build]
+  command = "cd home-solutions-hub-main && npm ci && npm run build"
+  publish = "home-solutions-hub-main/dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "20"
+

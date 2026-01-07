@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
-const WHATSAPP_NUMBER = "5511999999999";
+const WHATSAPP_NUMBER = "5511968888724";
 
 const services = [
   {

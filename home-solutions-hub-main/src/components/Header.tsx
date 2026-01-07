@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import logo from "@/assets/png branco.png";
 
-const WHATSAPP_NUMBER = "5511999999999"; // Substitua pelo número real
+const WHATSAPP_NUMBER = "5511968888724";
 
 const navLinks = [
   { href: "#inicio", label: "Início" },

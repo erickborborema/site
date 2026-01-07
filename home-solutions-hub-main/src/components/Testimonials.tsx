@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
-const WHATSAPP_NUMBER = "5511999999999";
+const WHATSAPP_NUMBER = "5511968888724";
 
 const testimonials = [
   {

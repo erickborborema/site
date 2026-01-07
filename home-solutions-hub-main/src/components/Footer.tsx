@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import logo from "@/assets/png branco.png";
 
-const WHATSAPP_NUMBER = "5511999999999";
+const WHATSAPP_NUMBER = "5511968888724";
 
 const navLinks = [
   { href: "#inicio", label: "Início" },
@@ -56,6 +56,17 @@ export function Footer() {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Phone className="w-4 h-4 text-green-500 flex-shrink-0" />
                   <span>Atendimento em até 2h</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Instagram className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <a 
+                    href="https://www.instagram.com/ph.eletrica" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-green-500 transition-colors"
+                  >
+                    @ph.eletrica
+                  </a>
                 </div>
               </div>
             </div>

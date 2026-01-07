@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
-const WHATSAPP_NUMBER = "5511999999999";
+const WHATSAPP_NUMBER = "5511968888724";
 
 export function QuickCTA() {
   const openWhatsApp = () => {

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 
-const WHATSAPP_NUMBER = "5511999999999";
+const WHATSAPP_NUMBER = "5511968888724";
 
 export function Hero() {
   const openWhatsApp = () => {

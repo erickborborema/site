@@ -1,0 +1,17 @@
+{
+  "name": "PH Soluções Residenciais",
+  "short_name": "PH Soluções",
+  "description": "Elétrica, hidráulica, instalações e reparos residenciais com agilidade e confiança",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#22c55e",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "/"
+}
+

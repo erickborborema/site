@@ -219,10 +219,10 @@ export function Services() {
           <span className="text-muted-foreground font-medium text-sm uppercase tracking-wider">
             Nossos Serviços
           </span>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-foreground mt-2 mb-4 px-2">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground mt-2 mb-4 px-2">
             O que podemos fazer por você
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base lg:text-lg">
             Soluções completas para sua casa, com qualidade e preço justo
           </p>
         </motion.div>
@@ -271,7 +271,7 @@ export function Services() {
               
               <button
                 onClick={() => openWhatsApp(service.title)}
-                className="relative z-10 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-accent/10 hover:bg-accent text-accent-foreground hover:text-white font-medium text-sm transition-all duration-300 mt-auto border border-accent/20 hover:border-accent"
+                className="relative z-10 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-accent/10 hover:bg-accent text-accent hover:text-white font-semibold text-sm transition-all duration-300 mt-auto border-2 border-accent/20 hover:border-accent hover:shadow-lg hover:scale-105"
               >
                 <WhatsAppIcon className="w-4 h-4" />
                 <span>Chamar no WhatsApp</span>

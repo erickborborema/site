@@ -76,10 +76,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-6 sm:mb-8"
+            className="mb-8 sm:mb-10"
           >
             <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-foreground leading-[1.1] mb-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <span>Soluções</span>
+              <span className="text-shadow-sm">Soluções</span>
               <ContainerTextFlip 
                 words={["Elétrica", "Hidráulica", "Reparos", "Manutenção", "Instalações"]}
                 interval={2500}

@@ -97,10 +97,10 @@ export function HowItWorks() {
           <span className="text-muted-foreground font-medium text-sm uppercase tracking-wider">
             Como Funciona
           </span>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-foreground mt-2 mb-4 px-2">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground mt-2 mb-4 px-2">
             Simples, rápido e sem burocracia
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base lg:text-lg">
             Em 4 passos você resolve seu problema em casa
           </p>
         </motion.div>

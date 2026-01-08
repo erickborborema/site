@@ -60,7 +60,7 @@ export function FAQ() {
           <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground mt-2 mb-4 px-2">
             Tire suas dúvidas
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-base lg:text-lg">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
             Respostas para as perguntas mais comuns sobre nossos serviços
           </p>
         </motion.div>

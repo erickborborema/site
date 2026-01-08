@@ -47,10 +47,10 @@ export function WhyChooseUs() {
           <span className="text-muted-foreground font-medium text-sm uppercase tracking-wider">
             Diferenciais
           </span>
-          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mt-2 mb-4 px-2 text-foreground">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-2 mb-4 px-2 text-foreground">
             Por que escolher o PH?
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base lg:text-lg">
             Compromisso com qualidade e respeito ao cliente
           </p>
         </motion.div>

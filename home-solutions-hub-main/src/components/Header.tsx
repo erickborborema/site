@@ -86,7 +86,7 @@ export function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="relative px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md"
+                  className="relative px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 rounded-md hover:bg-muted/50"
                 >
                   {link.label}
                   {activeSection === link.href && (
@@ -103,13 +103,13 @@ export function Header() {
 
             {/* CTA Button */}
             <div className="flex items-center gap-3">
-              <Button
-                onClick={openWhatsApp}
-                className="hidden md:flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-display font-semibold shadow-lg hover:shadow-xl transition-all"
-              >
-                <WhatsAppIcon className="w-4 h-4" />
-                Chamar no WhatsApp
-              </Button>
+            <Button
+              onClick={openWhatsApp}
+              className="hidden md:flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-display font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+            >
+              <WhatsAppIcon className="w-4 h-4" />
+              Chamar no WhatsApp
+            </Button>
 
               {/* Mobile Menu Button */}
               <button

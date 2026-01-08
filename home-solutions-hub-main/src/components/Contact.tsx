@@ -82,8 +82,8 @@ export function Contact() {
           <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground mt-2 mb-4 px-2">
             Fale comigo agora
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-base lg:text-lg">
-            Preencha o formulário ou chame direto no WhatsApp. 
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base lg:text-lg leading-relaxed">
+            Preencha o formulário ou chame direto no WhatsApp.<br className="hidden sm:block" />
             Respondo rápido e passo o orçamento sem compromisso.
           </p>
         </motion.div>

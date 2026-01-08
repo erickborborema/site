@@ -147,7 +147,7 @@ export function About() {
                 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-foreground leading-tight"
               >
                 <span className="block">MAIS QUE UM</span>
-                <span className="block text-accent">SERVICÇO</span>
+                <span className="block text-accent">SERVIÇO</span>
               </motion.h2>
             </div>
 
@@ -156,15 +156,15 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="space-y-4 text-muted-foreground leading-relaxed"
+              className="space-y-5 text-muted-foreground leading-relaxed"
             >
-              <p className="text-base sm:text-lg">
-                Na PH Soluções, cada serviço é uma experiência. Técnica profissional 
+              <p className="text-base sm:text-lg lg:text-xl">
+                Na <span className="text-accent font-semibold">PH Soluções</span>, cada serviço é uma experiência. Técnica profissional 
                 com atenção aos detalhes e respeito pela sua casa.
               </p>
-              <p className="text-base sm:text-lg">
+              <p className="text-base sm:text-lg lg:text-xl">
                 Tradição e modernidade se encontram para resolver seus problemas 
-                elétricos, hidráulicos e de manutenção com qualidade e agilidade.
+                elétricos, hidráulicos e de manutenção com <span className="text-accent font-semibold">qualidade</span> e <span className="text-accent font-semibold">agilidade</span>.
               </p>
             </motion.div>
 

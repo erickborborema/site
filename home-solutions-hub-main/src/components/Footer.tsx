@@ -123,7 +123,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="font-semibold text-green-500 hover:text-green-600 transition-colors duration-200 flex items-center gap-1 group"
               >
-                <span>Erick borborema</span>
+                <span>Erick Borborema</span>
                 <Instagram className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
               </a>
             </div>

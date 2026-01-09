@@ -1,0 +1,44 @@
+/*
+  # Security Headers
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  
+  # Content Security Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://wa.me; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' data:; connect-src 'self' https://wa.me https://api.whatsapp.com; frame-src https://wa.me; base-uri 'self'; form-action 'self' https://wa.me;
+  
+  # Cache Control
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/service-worker.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+

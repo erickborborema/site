@@ -1,5 +1,77 @@
 # 📝 Changelog - PH Soluções Residenciais
 
+## [1.1.2] - 2026-01-09
+
+### 🐛 Bug Fixes Críticos - Overflow Horizontal
+- **Correções Ultra-Rigorosas no Mobile**: Aplicadas múltiplas camadas de proteção contra overflow
+  
+#### CSS Global:
+- ✅ `html` e `body` com `max-width: 100vw`
+- ✅ Todos elementos com `max-width: 100%` e `word-wrap: break-word`
+- ✅ Headings e parágrafos com `overflow-wrap: break-word` e `hyphens: auto`
+- ✅ Arquivo: `src/index.css`
+
+#### Section Container:
+- ✅ Padding com safe-area-inset para iOS
+- ✅ `box-sizing: border-box` em todos containers
+- ✅ Padding responsivo por breakpoint
+
+#### WhyChooseUs - Cards Mobile:
+- ✅ Ícones reduzidos: `w-10 h-10` (40px)
+- ✅ Padding reduzido: `p-3` (12px)
+- ✅ Gap reduzido: `gap-2.5` (10px)
+- ✅ Fonte reduzida: título `text-sm`, descrição `text-xs`
+- ✅ Padding lateral extra: `pr-1` no texto
+- ✅ Container com `px-2` adicional
+- ✅ `hyphens: auto` para quebra de palavras
+- ✅ Arquivo: `src/components/WhyChooseUs.tsx`
+
+#### Index Page:
+- ✅ Wrapper principal com `max-w-[100vw]`
+- ✅ Main com `max-w-[100vw]` e `overflow-x-hidden`
+- ✅ Arquivo: `src/pages/Index.tsx`
+
+### 📚 Documentação
+- Criado `DEBUG-OVERFLOW.md` - Scripts e guia completo de debug
+- Scripts JavaScript para detectar elementos com overflow
+- Checklist detalhado de verificação mobile
+- Guia de debug avançado
+
+---
+
+## [1.1.1] - 2026-01-09
+
+### 🐛 Bug Fixes - Responsividade
+- **Diferenciais cortando no mobile**: Corrigido overflow horizontal na seção de diferenciais
+  - Adicionado `overflow-hidden` em sections e containers
+  - Cards mobile com `break-words` para textos longos
+  - Padding e margins ajustados para mobile
+  - Ícones redimensionados responsivamente (w-12 no mobile, w-14 no tablet)
+  - Arquivo: `src/components/WhyChooseUs.tsx`
+
+- **Overflow horizontal global**: Prevenido overflow em todas as seções
+  - Classes `.section-container` e `.section-padding` com `overflow-x: hidden`
+  - Arquivo: `src/index.css`
+
+### 🎨 UI/UX Improvements
+- Cards de diferenciais mais compactos no mobile
+- Melhor quebra de texto em títulos e descrições
+- Espaçamento otimizado para telas pequenas (320px+)
+- Margin lateral adicionada nos cards (mx-1)
+
+### 📁 Arquivos Modificados
+- `src/components/WhyChooseUs.tsx` - Cards responsivos e texto com quebra
+- `src/components/Services.tsx` - Overflow controlado
+- `src/components/HowItWorks.tsx` - Overflow controlado
+- `src/index.css` - Classes base com overflow-hidden
+
+### 📚 Documentação
+- Criado `RESPONSIVE-FIX.md` - Guia completo de correções de responsividade
+- Detalhamento de todos os breakpoints testados
+- Checklist de testes mobile/tablet/desktop
+
+---
+
 ## [1.1.0] - 2026-01-09
 
 ### 🐛 Bug Fixes

@@ -216,7 +216,7 @@ export function Services() {
   }, []);
 
   return (
-    <section id="servicos" className="section-padding bg-background" ref={ref}>
+    <section id="servicos" className="section-padding bg-background overflow-hidden" ref={ref}>
       <div className="section-container">
         {/* Header */}
         <motion.div

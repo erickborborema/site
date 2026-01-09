@@ -12,9 +12,9 @@ import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 const Index = () => {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden">
       <Header />
-      <main className="w-full pb-20 md:pb-0">
+      <main className="w-full max-w-[100vw] overflow-x-hidden pb-20 md:pb-0">
         <Hero />
         <Services />
         <About />

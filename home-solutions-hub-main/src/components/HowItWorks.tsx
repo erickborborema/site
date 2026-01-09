@@ -208,7 +208,7 @@ export function HowItWorks() {
   }, []);
 
   return (
-    <section id="como-funciona" className="section-padding" ref={ref}>
+    <section id="como-funciona" className="section-padding overflow-hidden" ref={ref}>
       <div className="section-container">
         {/* Header */}
         <motion.div

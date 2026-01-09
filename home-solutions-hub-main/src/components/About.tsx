@@ -1,17 +1,30 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Zap, Wrench, Lightbulb } from "lucide-react";
 import aboutImage from "@/assets/PHOTO-2026-01-06-21-44-01 2.jpg";
+import { useIsMobile } from "@/hooks/use-reduced-motion";
 
-// Componente para animação de contagem
-function CountUp({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
+// Componente para animação de contagem - OTIMIZADO E SEGURO
+function CountUp({ end, suffix = "", duration = 1.5 }: { end: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [count, setCount] = useState(0);
+  const isMobile = useIsMobile();
+  const [count, setCount] = useState(end); // Iniciar com valor final por segurança
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView) {
+      setCount(end);
+      return;
+    }
 
+    // No mobile, garantir que o valor apareça imediatamente
+    if (isMobile) {
+      setCount(end);
+      return;
+    }
+
+    // No desktop, fazer animação suave e rápida
+    setCount(0); // Reset para começar animação
     let startTime: number;
     let animationFrame: number;
 
@@ -19,28 +32,34 @@ function CountUp({ end, suffix = "", duration = 2 }: { end: number; suffix?: str
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
 
-      // Easing function para suavizar a animação
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
+      const newCount = Math.floor(easeOutQuart * end);
+      setCount(newCount);
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(animate);
       } else {
-        setCount(end);
+        setCount(end); // Garantir valor final exato
       }
     };
 
     animationFrame = requestAnimationFrame(animate);
 
+    // Timeout de segurança - garantir que o valor final apareça
+    const safetyTimeout = setTimeout(() => {
+      setCount(end);
+    }, (duration + 0.5) * 1000);
+
     return () => {
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
       }
+      clearTimeout(safetyTimeout);
     };
-  }, [isInView, end, duration]);
+  }, [isInView, end, duration, isMobile]);
 
   return (
-    <span ref={ref} className="inline-block">
+    <span ref={ref} className="inline-block tabular-nums">
       {count}{suffix}
     </span>
   );
@@ -184,11 +203,11 @@ export function About() {
                   className="text-center"
                 >
                   <div className="mb-2">
-                    <span className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-accent">
-                      <CountUp end={stat.value} suffix={stat.suffix} duration={2.5} />
+                    <span className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-accent tabular-nums">
+                      <CountUp end={stat.value} suffix={stat.suffix} duration={1.5} />
                     </span>
                   </div>
-                  <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wide px-1">
+                  <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium uppercase tracking-wide px-1 leading-tight">
                     {stat.label}
                   </p>
                 </motion.div>

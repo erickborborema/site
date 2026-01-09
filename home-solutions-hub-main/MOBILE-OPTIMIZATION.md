@@ -41,6 +41,31 @@
 - ✅ Delays reduzidos: 0.1s → 0.05s
 - ✅ Removidas animações `whileHover` e `scale` complexas
 
+### 🔢 Animação de Contagem Corrigida (BUG FIX)
+**Problema**: Números das estatísticas apareciam como "0+" no mobile ao invés de "15+", "800+", "1000+".
+
+**Causa**: Animação de contagem usando `requestAnimationFrame` não estava funcionando corretamente em dispositivos móveis.
+
+**Solução**:
+- ✅ No mobile: valores aparecem **imediatamente** sem animação
+- ✅ No desktop: animação suave mantida (mais rápida - 1.5s)
+- ✅ Valor inicial é o valor final (por segurança)
+- ✅ Timeout de segurança garante exibição do valor
+- ✅ `tabular-nums` para evitar layout shift
+
+```tsx
+// Sempre inicia com valor final
+const [count, setCount] = useState(end);
+
+// Mobile: sem animação
+if (isMobile) {
+  setCount(end);
+  return;
+}
+
+// Desktop: animação + timeout de segurança
+```
+
 ```tsx
 // Mobile simplificado
 transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -74,6 +99,7 @@ export function useIsMobile() {
 - ❌ Vídeo rodando constantemente no background
 - ❌ 8 animações ShineBorder contínuas
 - ❌ Múltiplas animações Framer Motion complexas
+- ❌ **Estatísticas mostrando "0+" ao invés dos valores reais**
 - ❌ Scroll travando
 - ❌ Interface não responsiva
 
@@ -81,6 +107,7 @@ export function useIsMobile() {
 - ✅ Sem vídeo no mobile (-70% recursos no Hero)
 - ✅ Cards estáticos simples (95% mais leve)
 - ✅ Animações rápidas e suaves
+- ✅ **Estatísticas aparecem corretamente: "15+", "800+", "1000+"**
 - ✅ Scroll fluido
 - ✅ Interface responsiva e rápida
 
@@ -119,6 +146,12 @@ export function useIsMobile() {
    - Carrossel otimizado para mobile
    - Cards menores e mais leves
 
+5. `src/components/About.tsx` ⭐ **BUG FIX**
+   - **Corrigido**: Números aparecendo como "0+"
+   - Estatísticas agora mostram valores corretos
+   - Animação desabilitada no mobile
+   - Timeout de segurança implementado
+
 ## 🔍 Como Funciona
 
 ### Renderização Condicional:
@@ -152,6 +185,8 @@ export function useIsMobile() {
 - [ ] Animações rápidas e suaves
 - [ ] Botões respondem instantaneamente
 - [ ] Carrossel de serviços fluido
+- [ ] **Estatísticas aparecem corretamente: "15+", "800+", "1000+"** ⭐
+- [ ] Números não ficam em "0+"
 
 ## 💡 Boas Práticas Implementadas
 

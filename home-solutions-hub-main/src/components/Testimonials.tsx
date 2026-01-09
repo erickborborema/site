@@ -256,20 +256,23 @@ export function Testimonials() {
             </AnimatePresence>
           </div>
 
-          {/* Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-green-500 w-8"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
-                }`}
-                aria-label={`Ir para depoimento ${index + 1}`}
-              />
-            ))}
+          {/* Indicador Interativo */}
+          <div className="sticky bottom-4 left-0 right-0 z-30 mt-8">
+            <div className="flex justify-center items-center gap-2 bg-background/80 backdrop-blur-md rounded-full py-3 px-4 mx-auto w-fit shadow-lg border border-border/30">
+              {testimonials.map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => goTo(index)}
+                  className={`rounded-full transition-all duration-300 ${
+                    currentIndex === index 
+                      ? 'w-8 h-2 bg-accent shadow-accent/50 shadow-sm' 
+                      : 'w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50 hover:scale-125'
+                  }`}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={`Ver depoimento ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
 

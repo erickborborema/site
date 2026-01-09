@@ -48,17 +48,17 @@ function CountUp({ end, suffix = "", duration = 2 }: { end: number; suffix?: str
 
 const stats = [
   {
-    value: 5,
+    value: 15,
     suffix: "+",
     label: "Anos de Experiência",
   },
   {
-    value: 200,
+    value: 800,
     suffix: "+",
     label: "Clientes Atendidos",
   },
   {
-    value: 500,
+    value: 1000,
     suffix: "+",
     label: "Serviços Realizados",
   },

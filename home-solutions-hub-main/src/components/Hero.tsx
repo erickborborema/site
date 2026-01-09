@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
+import videoBackground from "@/assets/SaveClip.App_AQPFuLAOH1r0RgbnhGxjow0JboSR8FNThg4a0NFG3Jj5wy-fY3r7FA6qIIdlAxK2vswZcm_KBNdHfvfEFDkN1aCpgY0XRvZVDRAcLEI.mp4";
 
 const WHATSAPP_NUMBER = "5511968888724";
 
@@ -14,8 +15,21 @@ export function Hero() {
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center pt-20 md:pt-24 pb-16 md:pb-24 overflow-hidden">
+      {/* Vídeo de fundo com opacidade baixa */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-10"
+        >
+          <source src={videoBackground} type="video/mp4" />
+        </video>
+      </div>
+      
       {/* Background com gradiente sutil */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent" />
       
       {/* Decoração de fundo */}
       <div className="absolute inset-0 overflow-hidden">
@@ -78,13 +92,13 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-8 sm:mb-10"
           >
-            <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-foreground leading-[1.1] mb-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <span className="text-shadow-sm">Soluções</span>
+            <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-foreground leading-[1.1] mb-6 flex flex-row items-center justify-center gap-2 sm:gap-2 md:gap-3">
+              <span className="text-shadow-sm whitespace-nowrap">Soluções</span>
               <ContainerTextFlip 
-                words={["Elétrica", "Hidráulica", "Reparos", "Manutenção", "Instalações"]}
+                words={["Elétricas", "Hidráulicas", "em Reparos", "em Manutenção", "em Instalações", "em Alvenaria"]}
                 interval={2500}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold"
-                textClassName="text-accent"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold whitespace-nowrap"
+                textClassName="text-accent whitespace-nowrap"
               />
             </h1>
           </motion.div>

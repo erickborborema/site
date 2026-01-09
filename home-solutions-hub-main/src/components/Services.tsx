@@ -1,8 +1,9 @@
 import { useRef, useEffect } from "react";
-import { Zap, Lightbulb, Wrench, Clock } from "lucide-react";
+import { Zap, Lightbulb, Wrench, Clock, Hammer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { ShineBorder } from "@/components/ui/shine-border";
 
 const WHATSAPP_NUMBER = "5511968888724";
 
@@ -23,6 +24,12 @@ const services = [
     icon: Wrench,
     title: "Reparos e Manutenção",
     description: "Ajustes, consertos e troca de peças em geral",
+    color: "bg-muted/50 border border-border/50",
+  },
+  {
+    icon: Hammer,
+    title: "Alvenaria",
+    description: "Pequenos reparos em paredes, pisos, azulejos e acabamentos",
     color: "bg-muted/50 border border-border/50",
   },
   {
@@ -247,18 +254,26 @@ export function Services() {
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.4, delay: (index % services.length) * 0.1 }}
               whileHover={{ scale: 1.03, y: -6 }}
-              className="card-elevated p-6 sm:p-8 min-w-[260px] sm:min-w-[280px] md:min-w-[300px] flex-shrink-0 flex flex-col items-center text-center relative overflow-hidden group border-2 border-transparent hover:border-green-500 transition-all duration-300"
+              className="min-w-[260px] sm:min-w-[280px] md:min-w-[300px] flex-shrink-0"
             >
+              <ShineBorder
+                className="relative overflow-hidden group h-full"
+                color={["#22c55e", "#16a34a", "#15803d"]}
+                borderRadius={16}
+                borderWidth={2}
+                duration={12}
+              >
+              <div className="p-6 sm:p-8 flex flex-col items-center text-center h-full">
               {/* Decoração de fundo sutil */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl -z-0" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl -z-0" />
               
               <motion.div
-                className="relative z-10 flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/10 border border-accent/30 mb-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-300"
+                className="relative z-10 flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-accent/20 to-accent/10 border border-accent/30 mb-6 group-hover:from-accent/30 group-hover:to-accent/20 transition-all duration-300"
                 whileHover={{ rotate: [0, -5, 5, -5, 0], scale: 1.1 }}
                 transition={{ duration: 0.5 }}
               >
-                <service.icon className="w-10 h-10 text-accent" />
+                <service.icon className="w-8 h-8 text-accent" />
               </motion.div>
               
               <h3 className="relative z-10 font-display font-bold text-lg sm:text-xl text-foreground mb-3">
@@ -276,6 +291,8 @@ export function Services() {
                 <WhatsAppIcon className="w-4 h-4" />
                 <span>Chamar no WhatsApp</span>
               </button>
+              </div>
+              </ShineBorder>
             </motion.div>
           ))}
         </div>

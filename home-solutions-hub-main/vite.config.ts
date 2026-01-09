@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    assetsInclude: ["**/*.JPG", "**/*.JPEG", "**/*.PNG"],
     build: {
       outDir: "dist",
       assetsDir: "assets",

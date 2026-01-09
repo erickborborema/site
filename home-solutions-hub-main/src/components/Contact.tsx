@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion, useInView } from "framer-motion";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { useIsMobile } from "@/hooks/use-reduced-motion";
 
 const WHATSAPP_NUMBER = "5511968888724";
 
@@ -30,6 +31,7 @@ const urgencyOptions = [
 export function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isMobile = useIsMobile();
   
   const [formData, setFormData] = useState({
     name: "",
@@ -99,85 +101,130 @@ export function Contact() {
           >
             {/* Info Cards */}
             <div className="space-y-4">
+              {/* Card 1 - Horário */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: isMobile ? 0.2 : 0.5, delay: 0.1 }}
                 className="group"
               >
-                <ShineBorder
-                  className="relative overflow-hidden"
-                  color={["#22c55e", "#16a34a", "#15803d"]}
-                  borderRadius={12}
-                  borderWidth={2}
-                  duration={10}
-                >
-                  <div className="flex items-start gap-5 p-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/10 border border-green-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Clock className="w-8 h-8 text-green-500" />
+                {isMobile ? (
+                  <div className="flex items-start gap-4 p-5 rounded-xl bg-card border-2 border-border/50">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-green-500" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-display font-semibold text-base lg:text-lg text-foreground mb-1 group-hover:text-green-500 transition-colors">
-                      Horário de atendimento
+                      <h4 className="font-display font-semibold text-base text-foreground mb-1">
+                        Horário de atendimento
                       </h4>
                       <p className="text-sm text-muted-foreground">Segunda a Sábado: 7h às 19h</p>
                     </div>
                   </div>
-                </ShineBorder>
+                ) : (
+                  <ShineBorder
+                    className="relative overflow-hidden"
+                    color={["#22c55e", "#16a34a", "#15803d"]}
+                    borderRadius={12}
+                    borderWidth={2}
+                    duration={10}
+                  >
+                    <div className="flex items-start gap-5 p-6">
+                      <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/10 border border-green-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Clock className="w-8 h-8 text-green-500" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-display font-semibold text-base lg:text-lg text-foreground mb-1 group-hover:text-green-500 transition-colors">
+                          Horário de atendimento
+                        </h4>
+                        <p className="text-sm text-muted-foreground">Segunda a Sábado: 7h às 19h</p>
+                      </div>
+                    </div>
+                  </ShineBorder>
+                )}
               </motion.div>
 
+              {/* Card 2 - Região */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: isMobile ? 0.2 : 0.5, delay: 0.2 }}
                 className="group"
               >
-                <ShineBorder
-                  className="relative overflow-hidden"
-                  color={["#22c55e", "#16a34a", "#15803d"]}
-                  borderRadius={12}
-                  borderWidth={2}
-                  duration={12}
-                >
-                  <div className="flex items-start gap-5 p-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/10 border border-green-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <MapPin className="w-8 h-8 text-green-500" />
+                {isMobile ? (
+                  <div className="flex items-start gap-4 p-5 rounded-xl bg-card border-2 border-border/50">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-green-500" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-display font-semibold text-base lg:text-lg text-foreground mb-1 group-hover:text-green-500 transition-colors">
+                      <h4 className="font-display font-semibold text-base text-foreground mb-1">
                         Região de atendimento
                       </h4>
                       <p className="text-sm text-muted-foreground">Toda a região metropolitana</p>
                     </div>
                   </div>
-                </ShineBorder>
+                ) : (
+                  <ShineBorder
+                    className="relative overflow-hidden"
+                    color={["#22c55e", "#16a34a", "#15803d"]}
+                    borderRadius={12}
+                    borderWidth={2}
+                    duration={12}
+                  >
+                    <div className="flex items-start gap-5 p-6">
+                      <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/10 border border-green-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <MapPin className="w-8 h-8 text-green-500" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-display font-semibold text-base lg:text-lg text-foreground mb-1 group-hover:text-green-500 transition-colors">
+                          Região de atendimento
+                        </h4>
+                        <p className="text-sm text-muted-foreground">Toda a região metropolitana</p>
+                      </div>
+                    </div>
+                  </ShineBorder>
+                )}
               </motion.div>
 
+              {/* Card 3 - Tempo */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: isMobile ? 0.2 : 0.5, delay: 0.3 }}
                 className="group"
               >
-                <ShineBorder
-                  className="relative overflow-hidden"
-                  color={["#22c55e", "#16a34a", "#15803d"]}
-                  borderRadius={12}
-                  borderWidth={2}
-                  duration={14}
-                >
-                  <div className="flex items-start gap-5 p-6">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/10 border border-green-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Phone className="w-8 h-8 text-green-500" />
+                {isMobile ? (
+                  <div className="flex items-start gap-4 p-5 rounded-xl bg-card border-2 border-border/50">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-green-500" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-display font-semibold text-base lg:text-lg text-foreground mb-1 group-hover:text-green-500 transition-colors">
+                      <h4 className="font-display font-semibold text-base text-foreground mb-1">
                         Tempo de resposta
                       </h4>
                       <p className="text-sm text-muted-foreground">Em até 2 horas no horário comercial</p>
                     </div>
                   </div>
-                </ShineBorder>
+                ) : (
+                  <ShineBorder
+                    className="relative overflow-hidden"
+                    color={["#22c55e", "#16a34a", "#15803d"]}
+                    borderRadius={12}
+                    borderWidth={2}
+                    duration={14}
+                  >
+                    <div className="flex items-start gap-5 p-6">
+                      <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/10 border border-green-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Phone className="w-8 h-8 text-green-500" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-display font-semibold text-base lg:text-lg text-foreground mb-1 group-hover:text-green-500 transition-colors">
+                          Tempo de resposta
+                        </h4>
+                        <p className="text-sm text-muted-foreground">Em até 2 horas no horário comercial</p>
+                      </div>
+                    </div>
+                  </ShineBorder>
+                )}
               </motion.div>
             </div>
 

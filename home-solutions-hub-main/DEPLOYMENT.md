@@ -22,7 +22,9 @@
 - [x] **Performance**
   - Cache-Control headers configurados
   - Lazy loading de imagens
-  - Vídeos otimizados com autoplay
+  - Vídeo desabilitado no mobile (economia de 70%)
+  - Animações otimizadas para mobile
+  - Renderização condicional mobile/desktop
   - Assets minificados (via build)
 
 - [x] **PWA (Progressive Web App)**

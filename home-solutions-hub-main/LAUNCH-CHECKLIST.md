@@ -32,13 +32,17 @@
 
 ### 📱 Responsividade
 
+- [x] **Otimizações mobile aplicadas**
+  - [x] Vídeo desabilitado no mobile
+  - [x] Animações simplificadas
+  - [x] Cards leves (sem ShineBorder)
 - [ ] **Testar em iPhone** (Safari)
 - [ ] **Testar em Android** (Chrome)
 - [ ] **Testar em iPad**
 - [ ] **Testar em desktop** (múltiplas resoluções)
 - [ ] Verificar orientação landscape/portrait
 - [ ] Touch gestures funcionando
-- [ ] Scroll suave
+- [ ] Scroll suave (deve estar a 60 FPS agora)
 
 ### 🔒 Segurança
 

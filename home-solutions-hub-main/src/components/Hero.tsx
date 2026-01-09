@@ -15,8 +15,8 @@ export function Hero() {
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center pt-20 md:pt-24 pb-16 md:pb-24 overflow-hidden">
-      {/* Vídeo de fundo com opacidade baixa */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Vídeo de fundo com opacidade baixa - SOMENTE DESKTOP */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         <video
           autoPlay
           muted

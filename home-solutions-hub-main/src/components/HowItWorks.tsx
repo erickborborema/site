@@ -536,9 +536,9 @@ export function HowItWorks() {
                     })}
                   </div>
                   
-                  {/* Indicador de deslizar - Interativo e Fixo */}
+                  {/* Indicador de deslizar - Container escuro com barra ativa */}
                   <div className="sticky bottom-4 left-0 right-0 z-30 mt-6">
-                    <div className="flex justify-center items-center gap-2 bg-background/80 backdrop-blur-md rounded-full py-3 px-4 mx-auto w-fit shadow-lg border border-border/30">
+                    <div className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-muted/30 border border-border/30 backdrop-blur-sm mx-auto shadow-lg">
                       {/* Adiciona indicador para vídeo se existir */}
                       {mediaFiles.video && (
                         <motion.button
@@ -552,14 +552,23 @@ export function HowItWorks() {
                               });
                             }
                           }}
-                          className={`rounded-full transition-all duration-300 ${
-                            activeCardIndex === 0 && mediaFiles.video
-                              ? 'w-8 h-2 bg-accent shadow-accent/50 shadow-sm' 
-                              : 'w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50 hover:scale-125'
-                          }`}
+                          className="relative group"
                           whileTap={{ scale: 0.9 }}
                           aria-label="Ver vídeo"
-                        />
+                        >
+                          {activeCardIndex === 0 && mediaFiles.video ? (
+                            // Barra verde alongada com glow quando ativo
+                            <div className="relative">
+                              <div className="w-8 h-2 rounded-full bg-accent transition-all duration-300" />
+                              {/* Glow effect */}
+                              <div className="absolute inset-0 w-8 h-2 rounded-full bg-accent/50 blur-sm" />
+                              <div className="absolute inset-0 w-8 h-2 rounded-full bg-accent/30 blur-md animate-pulse" />
+                            </div>
+                          ) : (
+                            // Dot circular quando inativo
+                            <div className="w-2 h-2 rounded-full bg-muted-foreground/40 group-hover:bg-accent/50 transition-all duration-300" />
+                          )}
+                        </motion.button>
                       )}
                       {mediaFiles.images.map((_, index) => (
                         <motion.button
@@ -572,9 +581,8 @@ export function HowItWorks() {
                               
                               const cardWidth = 280;
                               const gap = 16;
-                              const videoOffset = mediaFiles.video ? 1 : 0; // Adiciona offset se tem vídeo
+                              const videoOffset = mediaFiles.video ? 1 : 0;
                               
-                              // Calcula a posição de scroll para o card (alinhado com scroll-snap-align: start)
                               const scrollPosition = (index + videoOffset) * (cardWidth + gap);
                               
                               scrollContainer.scrollTo({
@@ -588,14 +596,23 @@ export function HowItWorks() {
                               }, 5000);
                             }
                           }}
-                          className={`rounded-full transition-all duration-300 ${
-                            activeCardIndex === index + (mediaFiles.video ? 1 : 0)
-                              ? 'w-8 h-2 bg-accent shadow-accent/50 shadow-sm' 
-                              : 'w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50 hover:scale-125'
-                          }`}
+                          className="relative group"
                           whileTap={{ scale: 0.9 }}
                           aria-label={`Ver foto ${index + 1}`}
-                        />
+                        >
+                          {activeCardIndex === index + (mediaFiles.video ? 1 : 0) ? (
+                            // Barra verde alongada com glow quando ativo
+                            <div className="relative">
+                              <div className="w-8 h-2 rounded-full bg-accent transition-all duration-300" />
+                              {/* Glow effect */}
+                              <div className="absolute inset-0 w-8 h-2 rounded-full bg-accent/50 blur-sm" />
+                              <div className="absolute inset-0 w-8 h-2 rounded-full bg-accent/30 blur-md animate-pulse" />
+                            </div>
+                          ) : (
+                            // Dot circular quando inativo
+                            <div className="w-2 h-2 rounded-full bg-muted-foreground/40 group-hover:bg-accent/50 transition-all duration-300" />
+                          )}
+                        </motion.button>
                       ))}
                     </div>
                     

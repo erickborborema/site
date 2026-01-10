@@ -256,21 +256,30 @@ export function Testimonials() {
             </AnimatePresence>
           </div>
 
-          {/* Indicador Interativo */}
+          {/* Indicador - Container escuro com barra ativa */}
           <div className="sticky bottom-4 left-0 right-0 z-30 mt-8">
-            <div className="flex justify-center items-center gap-2 bg-background/80 backdrop-blur-md rounded-full py-3 px-4 mx-auto w-fit shadow-lg border border-border/30">
+            <div className="inline-flex items-center gap-2 px-4 py-3 rounded-full bg-muted/30 border border-border/30 backdrop-blur-sm mx-auto shadow-lg">
               {testimonials.map((_, index) => (
                 <motion.button
                   key={index}
                   onClick={() => goTo(index)}
-                  className={`rounded-full transition-all duration-300 ${
-                    currentIndex === index 
-                      ? 'w-8 h-2 bg-accent shadow-accent/50 shadow-sm' 
-                      : 'w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50 hover:scale-125'
-                  }`}
+                  className="relative group"
                   whileTap={{ scale: 0.9 }}
                   aria-label={`Ver depoimento ${index + 1}`}
-                />
+                >
+                  {currentIndex === index ? (
+                    // Barra verde alongada com glow quando ativo
+                    <div className="relative">
+                      <div className="w-8 h-2 rounded-full bg-accent transition-all duration-300" />
+                      {/* Glow effect */}
+                      <div className="absolute inset-0 w-8 h-2 rounded-full bg-accent/50 blur-sm" />
+                      <div className="absolute inset-0 w-8 h-2 rounded-full bg-accent/30 blur-md animate-pulse" />
+                    </div>
+                  ) : (
+                    // Dot circular quando inativo
+                    <div className="w-2 h-2 rounded-full bg-muted-foreground/40 group-hover:bg-accent/50 transition-all duration-300" />
+                  )}
+                </motion.button>
               ))}
             </div>
           </div>

@@ -2,61 +2,51 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Zap, Wrench, Lightbulb } from "lucide-react";
 import aboutImage from "@/assets/PHOTO-2026-01-06-21-44-01 2.jpg";
-import { useIsMobile } from "@/hooks/use-reduced-motion";
 
-// Componente para animação de contagem - OTIMIZADO E SEGURO
-function CountUp({ end, suffix = "", duration = 1.5 }: { end: number; suffix?: string; duration?: number }) {
+// Componente para animação de contagem
+function CountUp({ end, suffix = "", duration = 2 }: { end: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const isMobile = useIsMobile();
   const [count, setCount] = useState(end); // Iniciar com valor final por segurança
+  const hasStartedRef = useRef(false);
 
   useEffect(() => {
-    if (!isInView) {
-      setCount(end);
-      return;
-    }
-
-    // No mobile, garantir que o valor apareça imediatamente
-    if (isMobile) {
-      setCount(end);
-      return;
-    }
-
-    // No desktop, fazer animação suave e rápida
-    setCount(0); // Reset para começar animação
-    let startTime: number;
+    if (!isInView || hasStartedRef.current) return;
+    
+    hasStartedRef.current = true;
+    setCount(0); // Reset para 0 para começar animação
+    
+    let startTime: number | null = null;
     let animationFrame: number;
 
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / (duration * 1000), 1);
 
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      const newCount = Math.floor(easeOutQuart * end);
+      // Easing suave
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const newCount = Math.round(easeOut * end);
       setCount(newCount);
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(animate);
       } else {
-        setCount(end); // Garantir valor final exato
+        setCount(end);
       }
     };
 
+    // Iniciar animação
     animationFrame = requestAnimationFrame(animate);
 
-    // Timeout de segurança - garantir que o valor final apareça
-    const safetyTimeout = setTimeout(() => {
-      setCount(end);
-    }, (duration + 0.5) * 1000);
+    // Segurança: garantir valor final
+    const safety = setTimeout(() => setCount(end), (duration + 0.5) * 1000);
 
     return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-      clearTimeout(safetyTimeout);
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+      clearTimeout(safety);
     };
-  }, [isInView, end, duration, isMobile]);
+  }, [isInView, end, duration]);
 
   return (
     <span ref={ref} className="inline-block tabular-nums">
@@ -77,7 +67,7 @@ const stats = [
     label: "Clientes Atendidos",
   },
   {
-    value: 1000,
+    value: 999,
     suffix: "+",
     label: "Serviços Realizados",
   },
